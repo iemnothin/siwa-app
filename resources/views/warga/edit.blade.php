@@ -22,16 +22,32 @@
                                 <label for="inputNIK" class="col-sm-2 col-form-label">NIK</label><span class="input-group-text"><i class="bi bi-person-lines-fill"></i></span>
                                 <input type="number" name="nik" value="{{$warga->nik}}" class="form-control" id="inputNIK" />
                             </div>
+                            @error('nik')
+                            <span class="text-danger">{{$message}}</span>
+                            @enderror
                             <!-- Nama -->
                             <div class="col-md-6 input-group">
                                 <label for="inputNama" class="col-sm-2 col-form-label">Nama</label><span class="input-group-text"><i class="bi bi-person-fill"></i></span>
                                 <input type="text" name="nama" value="{{$warga->nama}}" class="form-control" id="inputNama" />
                             </div>
+                            @error('nama')
+                            <span class="text-danger">{{$message}}</span>
+                            @enderror
                             <!-- Tempat/Tanggal Lahir -->
                             <div class="input-group">
                                 <label for="inputTempat" class="col-sm-2 col-form-label">Tempat/Tanggal</label><span class="input-group-text"><i class="bi bi-balloon-fill"></i></span>
                                 <input type="text" name="tempat" value="{{$warga->tempat}}" class="form-control" id="inputTempat" /><span class="input-group-text"><i class="bi bi-calendar-event"></i></span>
                                 <input type="date" name="tanggal_lahir" value="{{$warga->tanggal_lahir}}" class="form-control" id="inputTempat" />
+                            </div>
+                            <div class="col">
+                                @error('tempat')
+                                <span class="text-danger">{{$message}}</span>
+                                @enderror
+                            </div>
+                            <div class="col">
+                                @error('tanggal_lahir')
+                                <span class="text-danger">{{$message}}</span>
+                                @enderror
                             </div>
                             <!-- Jenis Kelamin - opt-->
                             <div class="col-md-6 input-group">
@@ -46,11 +62,17 @@
                                     </option>
                                 </select>
                             </div>
+                            @error('jenis_kelamin')
+                            <span class="text-danger">{{$message}}</span>
+                            @enderror
                             <!-- Alamat -->
                             <div class="col-md-6 input-group">
                                 <label for="inputAlamat" class="col-sm-2 col-form-label">Alamat</label><span class="input-group-text"><i class="bi bi-geo-alt-fill"></i></span>
                                 <input type="text" name="alamat" value="{{$warga->alamat}}" class="form-control" id="inputAlamat" />
                             </div>
+                            @error('alamat')
+                            <span class="text-danger">{{$message}}</span>
+                            @enderror
                             <!-- RT/RW -->
                             <div class="input-group">
                                 <span class="input-group-text">RT</span>
@@ -58,12 +80,32 @@
                                 <span class="input-group-text">RW</span>
                                 <input type="number" aria-label="RW" class="form-control" name="rw" value="{{$warga->rw}}" />
                             </div>
+                            <div class="col">
+                                @error('rt')
+                                <span class="text-danger">{{$message}}</span>
+                                @enderror
+                            </div>
+                            <div class="col">
+                                @error('rw')
+                                <span class="text-danger">{{$message}}</span>
+                                @enderror
+                            </div>
                             <!-- kel/desa $ Kecamatan -->
                             <div class="input-group">
                                 <span class="input-group-text">Kelurahan/Desa</span>
                                 <input type="text" aria-label="kel_desa" class="form-control" name="kel_desa" value="{{$warga->kel_desa}}" />
                                 <span class="input-group-text">Kecamatan</span>
                                 <input type="text" aria-label="kecamatan" class="form-control" name="kecamatan" value="{{$warga->kecamatan}}" />
+                            </div>
+                            <div class="col-md-6">
+                                @error('kel_desa')
+                                <span class="text-danger">{{$message}}</span>
+                                @enderror
+                            </div>
+                            <div class="col-md-6">
+                                @error('kecamatan')
+                                <span class="text-danger">{{$message}}</span>
+                                @enderror
                             </div>
                             <!-- Agama - opt-->
                             <div class="col-md-6">
@@ -88,6 +130,9 @@
                                     </option>
                                 </select>
                             </div>
+                            @error('agama')
+                            <span class="text-danger">{{$message}}</span>
+                            @enderror
                             <!-- Status Perkawinan - opt-->
                             <div class="col-md-6">
                                 <label for="inputStatusPerkawinan" class="form-label" name="status_perkawinan" value="{{$warga->status_perkawinan}}">Status Perkawinan</label>
@@ -103,6 +148,9 @@
                                     </option>
                                 </select>
                             </div>
+                            @error('status_perkawinan')
+                            <span class="text-danger">{{$message}}</span>
+                            @enderror
                             <!-- Pekerjaan - opt-->
                             <div class="col-md-6">
                                 <label for="inputPekerjaan" class="form-label" name="pekerjaan" value="{{$warga->pekerjaan}}">Pekerjaan</label>
@@ -150,6 +198,9 @@
                                         @endif>Buruh</option>
                                 </select>
                             </div>
+                            @error('pekerjaan')
+                            <span class="text-danger">{{$message}}</span>
+                            @enderror
                             <!-- Kewarganegaraan - opt-->
                             <div class="col-md-6">
                                 <label for="inputKewarganegaraan" class="form-label" name="kewarganegaraan" value="{{$warga->kewarganegaraan}}">Kewarganegaraan</label>
@@ -161,6 +212,9 @@
                                         @endif>WNA</option>
                                 </select>
                             </div>
+                            @error('kewarganegaraan')
+                            <span class="text-danger">{{$message}}</span>
+                            @enderror
                         </div>
                     </div>
                 </div>
