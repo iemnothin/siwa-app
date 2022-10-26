@@ -20,39 +20,43 @@
                             <!-- NIK -->
                             <div class="col-md-6 input-group">
                                 <label for="inputNIK" class="col-sm-2 col-form-label">NIK</label><span class="input-group-text"><i class="bi bi-person-lines-fill"></i></span>
-                                <input type="number" name="nik" value="{{$warga->nik}}" class="form-control" id="inputNIK" />
+                                <input type="number" name="nik" value="{{$warga->nik}}" class="form-control @error('nik') is-invalid @enderror" id="inputNIK" />
+                                @error('nik')
+                                <div class="invalid-feedback">
+                                    {{$message}}
+                                </div>
+                                @enderror
                             </div>
-                            @error('nik')
-                            <span class="text-danger">{{$message}}</span>
-                            @enderror
                             <!-- Nama -->
                             <div class="col-md-6 input-group">
                                 <label for="inputNama" class="col-sm-2 col-form-label">Nama</label><span class="input-group-text"><i class="bi bi-person-fill"></i></span>
-                                <input type="text" name="nama" value="{{$warga->nama}}" class="form-control" id="inputNama" />
+                                <input type="text" name="nama" value="{{$warga->nama}}" class="form-control @error('nama') is-invalid @enderror" id="inputNama" />
+                                @error('nama')
+                                <div class="invalid-feedback">
+                                    {{$message}}
+                                </div>
+                                @enderror
                             </div>
-                            @error('nama')
-                            <span class="text-danger">{{$message}}</span>
-                            @enderror
                             <!-- Tempat/Tanggal Lahir -->
                             <div class="input-group">
                                 <label for="inputTempat" class="col-sm-2 col-form-label">Tempat/Tanggal</label><span class="input-group-text"><i class="bi bi-balloon-fill"></i></span>
-                                <input type="text" name="tempat" value="{{$warga->tempat}}" class="form-control" id="inputTempat" /><span class="input-group-text"><i class="bi bi-calendar-event"></i></span>
-                                <input type="date" name="tanggal_lahir" value="{{$warga->tanggal_lahir}}" class="form-control" id="inputTempat" />
-                            </div>
-                            <div class="col">
+                                <input type="text" name="tempat" value="{{$warga->tempat}}" class="form-control @error('tempat') is-invalid @enderror" id="inputTempat" /><span class="input-group-text"><i class="bi bi-calendar-event"></i></span>
                                 @error('tempat')
-                                <span class="text-danger">{{$message}}</span>
+                                <div class="invalid-feedback">
+                                    {{$message}}
+                                </div>
                                 @enderror
-                            </div>
-                            <div class="col">
+                                <input type="date" name="tanggal_lahir" value="{{$warga->tanggal_lahir}}" class="form-control @error('tanggal_lahir') is-invalid @enderror" id="inputTempat" />
                                 @error('tanggal_lahir')
-                                <span class="text-danger">{{$message}}</span>
+                                <div class="invalid-feedback">
+                                    {{$message}}
+                                </div>
                                 @enderror
                             </div>
                             <!-- Jenis Kelamin - opt-->
                             <div class="col-md-6 input-group">
                                 <label for="inputJenisKelamin" class="col-sm-2 col-form-label">Jenis Kelamin</label><span class="input-group-text" name="jenis_kelamin" value="{{$warga->jenis_kelamin}}"><i class="bi bi-gender-ambiguous"></i></span>
-                                <select class="form-select" aria-label="select jenis kelamin" id="inputJenisKelamin">
+                                <select class="form-select @error('jenis_kelamin') is-invalid @enderror" aria-label="select jenis kelamin" id="inputJenisKelamin">
                                     <option selected>Pilih</option>
                                     <option value="Laki-laki" @if($warga->jenis_kelamin=="Laki-laki") selected @endif>
                                         Laki-laki
@@ -61,56 +65,60 @@
                                         Perempuan
                                     </option>
                                 </select>
+                                @error('jenis_kelamin')
+                                <div class="invalid-feedback">
+                                    {{$message}}
+                                </div>
+                                @enderror
                             </div>
-                            @error('jenis_kelamin')
-                            <span class="text-danger">{{$message}}</span>
-                            @enderror
                             <!-- Alamat -->
                             <div class="col-md-6 input-group">
                                 <label for="inputAlamat" class="col-sm-2 col-form-label">Alamat</label><span class="input-group-text"><i class="bi bi-geo-alt-fill"></i></span>
-                                <input type="text" name="alamat" value="{{$warga->alamat}}" class="form-control" id="inputAlamat" />
+                                <input type="text" name="alamat" value="{{$warga->alamat}}" class="form-control @error('alamat') is-invalid @enderror" id="inputAlamat" />
+                                @error('alamat')
+                                <div class="invalid-feedback">
+                                    {{$message}}
+                                </div>
+                                @enderror
                             </div>
-                            @error('alamat')
-                            <span class="text-danger">{{$message}}</span>
-                            @enderror
                             <!-- RT/RW -->
                             <div class="input-group">
                                 <span class="input-group-text">RT</span>
-                                <input type="number" aria-label="RT" class="form-control" name="rt" value="{{$warga->rt}}" />
-                                <span class="input-group-text">RW</span>
-                                <input type="number" aria-label="RW" class="form-control" name="rw" value="{{$warga->rw}}" />
-                            </div>
-                            <div class="col">
+                                <input type="number" aria-label="RT" class="form-control @error('rt') is-invalid @enderror" name="rt" value="{{$warga->rt}}" />
                                 @error('rt')
-                                <span class="text-danger">{{$message}}</span>
+                                <div class="invalid-feedback">
+                                    {{$message}}
+                                </div>
                                 @enderror
-                            </div>
-                            <div class="col">
+                                <span class="input-group-text">RW</span>
+                                <input type="number" aria-label="RW" class="form-control @error('rw') is-invalid @enderror" name="rw" value="{{$warga->rw}}" />
                                 @error('rw')
-                                <span class="text-danger">{{$message}}</span>
+                                <div class="invalid-feedback">
+                                    {{$message}}
+                                </div>
                                 @enderror
                             </div>
                             <!-- kel/desa $ Kecamatan -->
                             <div class="input-group">
                                 <span class="input-group-text">Kelurahan/Desa</span>
-                                <input type="text" aria-label="kel_desa" class="form-control" name="kel_desa" value="{{$warga->kel_desa}}" />
-                                <span class="input-group-text">Kecamatan</span>
-                                <input type="text" aria-label="kecamatan" class="form-control" name="kecamatan" value="{{$warga->kecamatan}}" />
-                            </div>
-                            <div class="col-md-6">
+                                <input type="text" aria-label="kel_desa" class="form-control @error('kel_desa') is-invalid @enderror" name="kel_desa" value="{{$warga->kel_desa}}" />
                                 @error('kel_desa')
-                                <span class="text-danger">{{$message}}</span>
+                                <div class="invalid-feedback">
+                                    {{$message}}
+                                </div>
                                 @enderror
-                            </div>
-                            <div class="col-md-6">
+                                <span class="input-group-text">Kecamatan</span>
+                                <input type="text" aria-label="kecamatan" class="form-control @error('kecamatan') is-invalid @enderror" name="kecamatan" value="{{$warga->kecamatan}}" />
                                 @error('kecamatan')
-                                <span class="text-danger">{{$message}}</span>
+                                <div class="invalid-feedback">
+                                    {{$message}}
+                                </div>
                                 @enderror
                             </div>
                             <!-- Agama - opt-->
                             <div class="col-md-6">
                                 <label for="inputAgama" class="form-label" name="agama" value="{{$warga->agama}}">Agama</label>
-                                <select class="form-select" aria-label="Default select example" id="inputAgama">
+                                <select class="form-select @error('agama') is-invalid @enderror" aria-label="Select Agama" id="inputAgama">
                                     <option selected>Pilih</option>
                                     <option value="Islam" @if($warga->agama=="Islam") selected
                                         @endif>Islam</option>
@@ -129,14 +137,16 @@
                                         Konghucu
                                     </option>
                                 </select>
+                                @error('agama')
+                                <div class="invalid-feedback">
+                                    {{$message}}
+                                </div>
+                                @enderror
                             </div>
-                            @error('agama')
-                            <span class="text-danger">{{$message}}</span>
-                            @enderror
                             <!-- Status Perkawinan - opt-->
                             <div class="col-md-6">
                                 <label for="inputStatusPerkawinan" class="form-label" name="status_perkawinan" value="{{$warga->status_perkawinan}}">Status Perkawinan</label>
-                                <select class="form-select" aria-label="select status perkawinan" id="inputStatusPerkawinan">
+                                <select class="form-select @error('status_perkawinan') is-invalid @enderror" aria-label="select status perkawinan" id="inputStatusPerkawinan">
                                     <option selected>Pilih</option>
                                     <option value="Sudah Kawin" @if($warga->status_perkawinan=="Sudah Kawin") selected
                                         @endif>
@@ -147,14 +157,16 @@
                                         Belum Kawin
                                     </option>
                                 </select>
+                                @error('status_perkawinan')
+                                <div class="invalid-feedback">
+                                    {{$message}}
+                                </div>
+                                @enderror
                             </div>
-                            @error('status_perkawinan')
-                            <span class="text-danger">{{$message}}</span>
-                            @enderror
                             <!-- Pekerjaan - opt-->
                             <div class="col-md-6">
                                 <label for="inputPekerjaan" class="form-label" name="pekerjaan" value="{{$warga->pekerjaan}}">Pekerjaan</label>
-                                <select class="form-select" aria-label="select pekerjaan" id="inputPekerjaan">
+                                <select class="form-select @error('pekerjaan') is-invalid @enderror" aria-label="select pekerjaan" id="inputPekerjaan">
                                     <option selected>Pilih</option>
                                     <option value="Belum/Tidak Bekerja" @if($warga->pekerjaan=="Belum/Tidak Bekerja") selected
                                         @endif>
@@ -165,8 +177,6 @@
                                         Mengurus Rumah Tangga
                                     </option>
                                     <option value="Pelajar/Mahasiswa" @if($warga->pekerjaan=="Pelajar/Mahasiswa") selected
-
-
                                         @endif>
                                         Pelajar/Mahasiswa
                                     </option>
@@ -197,24 +207,28 @@
                                     <option value="Buruh" @if($warga->pekerjaan=="Buruh") selected
                                         @endif>Buruh</option>
                                 </select>
+                                @error('pekerjaan')
+                                <div class="invalid-feedback">
+                                    {{$message}}
+                                </div>
+                                @enderror
                             </div>
-                            @error('pekerjaan')
-                            <span class="text-danger">{{$message}}</span>
-                            @enderror
                             <!-- Kewarganegaraan - opt-->
                             <div class="col-md-6">
                                 <label for="inputKewarganegaraan" class="form-label" name="kewarganegaraan" value="{{$warga->kewarganegaraan}}">Kewarganegaraan</label>
-                                <select class="form-select" aria-label="select kewarganegaraan" id="inputKewarganegaraan">
+                                <select class="form-select @error('kewarganegaraan') is-invalid @enderror" aria-label="select kewarganegaraan" id="inputKewarganegaraan">
                                     <option selected>Pilih</option>
                                     <option value="WNI" @if($warga->kewarganegaraan=="WNI") selected
                                         @endif>WNI</option>
                                     <option value="WNA" @if($warga->kewarganegaraan=="WNA") selected
                                         @endif>WNA</option>
                                 </select>
+                                @error('kewarganegaraan')
+                                <div class="invalid-feedback">
+                                    {{$message}}
+                                </div>
+                                @enderror
                             </div>
-                            @error('kewarganegaraan')
-                            <span class="text-danger">{{$message}}</span>
-                            @enderror
                         </div>
                     </div>
                 </div>

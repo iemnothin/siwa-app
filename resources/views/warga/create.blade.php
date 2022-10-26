@@ -19,100 +19,118 @@
                             <!-- NIK -->
                             <div class="col-md-6 input-group">
                                 <label for="inputNIK" class="col-sm-2 col-form-label">NIK</label><span class="input-group-text"><i class="bi bi-person-lines-fill"></i></span>
-                                <input type="number" name="nik" class="form-control" id="inputNIK" />
+                                <input type="number" name="nik" class="form-control @error('nik') is-invalid @enderror" id="inputNIK" autofocus />
+                                @error('nik')
+                                <div class="invalid-feedback">
+                                    {{$message}}
+                                </div>
+                                @enderror
                             </div>
-                            @error('nik')
-                            <span class="text-danger">{{$message}}</span>
-                            @enderror
                             <!-- Nama -->
                             <div class="col-md-6 input-group">
                                 <label for="inputNama" class="col-sm-2 col-form-label">Nama</label><span class="input-group-text"><i class="bi bi-person-fill"></i></span>
-                                <input type="text" name="nama" class="form-control" id="inputNama" />
+                                <input type="text" name="nama" class="form-control @error('nama') is-invalid @enderror" id="inputNama" />
+                                @error('nama')
+                                <div class="invalid-feedback">
+                                    {{$message}}
+                                </div>
+                                @enderror
                             </div>
-                            @error('nama')
-                            <span class="text-danger">{{$message}}</span>
-                            @enderror
                             <!-- Tempat/Tanggal Lahir -->
                             <label for="inputTempat" class="col-form-label">Tempat/Tanggal Lahir</label>
                             <div class="input-group">
                                 <span class="input-group-text"><i class="bi bi-balloon-fill"></i></span>
-                                <input type="text" name="tempat" class="form-control" id="inputTempat" /><span class="input-group-text"><i class="bi bi-calendar-event"></i></span>
-                                <input type="date" name="tanggal_lahir" class="form-control" id="inputTempat" />
-                            </div>
-                            <div class="col">
+                                <input type="text" name="tempat" class="form-control @error('tempat') is-invalid @enderror" id="inputTempat" />
                                 @error('tempat')
-                                <span class="text-danger">{{$message}}</span>
+                                <div class="invalid-feedback">
+                                    {{$message}}
+                                </div>
                                 @enderror
-                            </div>
-                            <div class="col">
+                                <br>
+                                <span class="input-group-text"><i class="bi bi-calendar-event"></i></span>
+                                <input type="date" name="tanggal_lahir" class="form-control @error('tanggal_lahir') is-invalid @enderror" id="inputTempat" />
                                 @error('tanggal_lahir')
-                                <span class="text-danger">{{$message}}</span>
+                                <div class="invalid-feedback">
+                                    {{$message}}
+                                </div>
                                 @enderror
                             </div>
                             <!-- Jenis Kelamin - opt-->
                             <div class="col-md-6 input-group">
-                                <label for="inputJenisKelamin" class="col-sm-2 col-form-label">Jenis Kelamin</label><span class="input-group-text" name="jenis_kelamin"><i class="bi bi-gender-ambiguous"></i></span>
-                                <select class="form-select" aria-label="Default select example" id="inputJenisKelamin">
-                                    <option selected>Pilih</option>
-                                    <option value="Laki-laki">
-                                        Laki-laki
-                                    </option>
-                                    <option value="Perempuan">
-                                        Perempuan
-                                    </option>
+                                <label for="inputJenisKelamin" class="col-sm-2 col-form-label">Jenis Kelamin</label><span class="input-group-text"><i class="bi bi-gender-ambiguous"></i></span>
+                                <select name="{}" class="form-select @error('jenis_kelamin_id') is-invalid @enderror" aria-label="Select Jenis Kelamin" id="inputJenisKelamin">
+
+                                    <option selected>- Pilih -</option>
+                                    @foreach($genderList as $value)
+                                    <option value="{{$value->id}}">{{$value->nama}}</option>
+                                    @endforeach
+                                    {{-- <option value="Laki-laki"> --}}
+                                    {{-- Laki-laki --}}
+                                    {{-- </option> --}}
+                                    {{-- <option value="Perempuan"> --}}
+                                    {{-- Perempuan --}}
+                                    {{-- </option> --}}
                                 </select>
+                                @error('jenis_kelamin_id')
+                                <div class="invalid-feedback">
+                                    {{$message}}
+                                </div>
+                                @enderror
                             </div>
-                            @error('jenis_kelamin')
-                            <span class="text-danger">{{$message}}</span>
-                            @enderror
                             <!-- Alamat -->
                             <div class="col-md-6 input-group">
                                 <label for="inputAlamat" class="col-sm-2 col-form-label">Alamat</label><span class="input-group-text"><i class="bi bi-geo-alt-fill"></i></span>
-                                <input type="text" name="alamat" class="form-control" id="inputAlamat" />
+                                <input type="text" name="alamat" class="form-control @error('alamat') is-invalid @enderror" id="inputAlamat" />
+                                @error('alamat')
+                                <div class="invalid-feedback">
+                                    {{$message}}
+                                </div>
+                                @enderror
                             </div>
-                            @error('alamat')
-                            <span class="text-danger">{{$message}}</span>
-                            @enderror
                             <!-- RT/RW -->
                             <div class="input-group">
                                 <span class="input-group-text">RT</span>
-                                <input type="number" aria-label="RT" class="form-control" name="rt" />
-                                <span class="input-group-text">RW</span>
-                                <input type="number" aria-label="RW" class="form-control" name="rw" />
-                            </div>
-                            <div class="col">
+                                <input type="number" aria-label="RT" class="form-control @error('rt') is-invalid @enderror" name="rt" />
                                 @error('rt')
-                                <span class="text-danger">{{$message}}</span>
+                                <div class="invalid-feedback">
+                                    {{$message}}
+                                </div>
                                 @enderror
-                            </div>
-                            <div class="col">
+                                <span class="input-group-text">RW</span>
+                                <input type="number" aria-label="RW" class="form-control @error('rw') is-invalid @enderror" name="rw" />
                                 @error('rw')
-                                <span class="text-danger">{{$message}}</span>
+                                <div class="invalid-feedback">
+                                    {{$message}}
+                                </div>
                                 @enderror
                             </div>
                             <!-- kel/desa $ Kecamatan -->
                             <div class="input-group">
                                 <span class="input-group-text">Kel/Desa</span>
-                                <input type="text" aria-label="kel_desa" class="form-control" name="kel_desa" />
-                                <span class="input-group-text">Kecamatan</span>
-                                <input type="text" aria-label="kecamatan" class="form-control" name="kecamatan" />
-                            </div>
-                            <div class="col-md-6">
+                                <input type="text" aria-label="kel_desa" class="form-control @error('kel_desa') is-invalid @enderror" name="kel_desa" />
                                 @error('kel_desa')
-                                <span class="text-danger">{{$message}}</span>
+                                <div class="invalid-feedback">
+                                    {{$message}}
+                                </div>
                                 @enderror
-                            </div>
-                            <div class="col-md-6">
+                                <span class="input-group-text">Kecamatan</span>
+                                <input type="text" aria-label="kecamatan" class="form-control @error('kecamatan') is-invalid @enderror" name="kecamatan" />
                                 @error('kecamatan')
-                                <span class="text-danger">{{$message}}</span>
+                                <div class="invalid-feedback">
+                                    {{$message}}
+                                </div>
                                 @enderror
                             </div>
                             <!-- Agama - opt-->
                             <div class="col-md-6">
-                                <label for="inputAgama" class="form-label" name="agama">Agama</label>
-                                <select class="form-select" aria-label="Default select example" id="inputAgama">
-                                    <option selected>Pilih</option>
-                                    <option value="Islam">Islam</option>
+                                <label for="inputAgama" class="form-label">Agama</label>
+                                <select name="agama_id" class="form-select @error('agama_id') is-invalid @enderror" aria-label="Select Agama" id="inputAgama">
+
+                                    <option selected>- Pilih -</option>
+                                    @foreach($religionList as $value)
+                                    <option value="{{$value->id}}">{{$value->nama}}</option>
+                                    @endforeach
+                                    {{-- <option value="Islam">Islam</option>
                                     <option value="Kristen">
                                         Kristen
                                     </option>
@@ -122,34 +140,46 @@
                                     </option>
                                     <option value="Konghucu">
                                         Konghucu
-                                    </option>
+                                    </option> --}}
                                 </select>
-                                @error('agama')
-                                <span class="text-danger">{{$message}}</span>
+                                @error('agama_id')
+                                <div class="invalid-feedback">
+                                    {{$message}}
+                                </div>
                                 @enderror
                             </div>
                             <!-- Status Perkawinan - opt-->
                             <div class="col-md-6">
-                                <label for="inputStatusPerkawinan" class="form-label" name="status_perkawinan">Status Perkawinan</label>
-                                <select class="form-select" aria-label="Default select example" id="inputStatusPerkawinan">
-                                    <option selected>Pilih</option>
-                                    <option value="Sudah Kawin">
+                                <label for="inputStatusPerkawinan" class="form-label">Status Perkawinan</label>
+                                <select name="status_perkawinan_id" class="form-select" aria-label="Select Status Perkawinan" id="inputStatusPerkawinan">
+                                    <option selected>- Pilih -</option>
+                                    @foreach($maritalStatusList as $value)
+                                    <option value="{{$value->id}}">{{$value->nama}}</option>
+                                    @endforeach
+
+                                    {{-- <option value="Sudah Kawin">
                                         Sudah Kawin
                                     </option>
                                     <option value="Belum Kawin">
                                         Belum Kawin
-                                    </option>
+                                    </option> --}}
                                 </select>
-                                @error('status_perkawinan')
-                                <span class="text-danger">{{$message}}</span>
+                                @error('status_perkawinan_id')
+                                <div class="invalid-feedback">
+                                    {{$message}}
+                                </div>
                                 @enderror
                             </div>
                             <!-- Pekerjaan - opt-->
                             <div class="col-md-6">
-                                <label for="inputPekerjaan" class="form-label" name="pekerjaan">Pekerjaan</label>
-                                <select class="form-select" aria-label="Default select example" id="inputPekerjaan">
-                                    <option selected>Pilih</option>
-                                    <option value="Belum/Tidak Bekerja">
+                                <label for="inputPekerjaan" class="form-label">Pekerjaan</label>
+                                <select name="pekerjaan_id" class="form-select" aria-label="Select Pekerjaan" id="inputPekerjaan">
+                                    <option selected>- Pilih -</option>
+                                    @foreach($jobList as $value)
+                                    <option value="{{$value->id}}">{{$value->nama}}</option>
+                                    @endforeach
+
+                                    {{-- <option value="Belum/Tidak Bekerja">
                                         Belum/Tidak Bekerja
                                     </option>
                                     <option value="Mengurus Rumah Tangga">
@@ -176,22 +206,29 @@
                                     <option value="Karyawan BUMD">
                                         Karyawan BUMD
                                     </option>
-                                    <option value="Buruh">Buruh</option>
+                                    <option value="Buruh">Buruh</option> --}}
                                 </select>
-                                @error('pekerjaan')
-                                <span class="text-danger">{{$message}}</span>
+                                @error('pekerjaan_id')
+                                <div class="invalid-feedback">
+                                    {{$message}}
+                                </div>
                                 @enderror
                             </div>
                             <!-- Kewarganegaraan - opt-->
                             <div class="col-md-6">
-                                <label for="inputKewarganegaraan" class="form-label" name="kewarganegaraan">Kewarganegaraan</label>
-                                <select class="form-select" aria-label="Default select example" id="inputKewarganegaraan">
-                                    <option selected>Pilih</option>
+                                <label for="inputKewarganegaraan" class="form-label">Kewarganegaraan</label>
+                                <select name="kewarganegaraan_id" class="form-select" aria-label="Select Kewarganegaraan" id="inputKewarganegaraan">
+                                    <option selected>- Pilih -</option>
+                                    @foreach($citizenshipList as $item)
+                                    <option value="{{$item->id}}">{{$item->nama}}</option>
+                                    @endforeach
                                     <option value="WNI">WNI</option>
                                     <option value="WNA">WNA</option>
                                 </select>
-                                @error('kewarganegaraan')
-                                <span class="text-danger">{{$message}}</span>
+                                @error('kewarganegaraan_id')
+                                <div class="invalid-feedback">
+                                    {{$message}}
+                                </div>
                                 @enderror
                             </div>
                         </div>

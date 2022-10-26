@@ -4,6 +4,11 @@
 
 @section('content')
 <div class="container">
+    <div class="row mt-5">
+        <div class="col">
+            <h1 class="bold">Data Kartu Tanda Penduduk</h1><br>
+        </div>
+    </div>
     <a class="btn btn-primary rounded-pill" href="/warga/create" role="button">Tambah Data</a>
     <table class="table">
         <thead>
@@ -17,35 +22,34 @@
                 <th scope="col">Status Perkawinan</th>
                 <th scope="col">Pekerjaan</th>
                 <th scope="col">Kewarganegaraan</th>
-                <th scope="col">Gol. Darah</th>
                 <th scope="col">Aksi</th>
             </tr>
         </thead>
         <tbody>
-            @foreach($warga as $w)
+            @foreach($citizenList as $data)
             <tr>
-                <td>{{$w->nik}}</td>
-                <td>{{$w->nama}}</td>
-                <td>{{$w->tempat.", ".$w->tanggal_lahir}}</td>
-                <td>{{$w->jenis_kelamin}}</td>
+                <td>{{$data->nik}}</td>
+                <td>{{$data->nama}}</td>
+                <td>{{$data->tempat.", ".$data->tanggal_lahir}}</td>
+                <td>{{$data->gender['nama']}}</td>
                 <td>
-                    {{$w->alamat.", RT.".$w->rt.", RW.".$w->rw.", ".$w->kel_desa.", ".$w->kecamatan}}
+                    {{$data->alamat.", RT.".$data->rt.", RW.".$data->rw.", ".$data->kel_desa.", ".$data->kecamatan}}
                 </td>
-                <td>{{$w->agama}}</td>
-                <td>{{$w->status_perkawinan}}</td>
-                <td>{{$w->pekerjaan}}</td>
-                <td>{{$w->kewarganegaraan}}</td>
-                <td>{{$w->gol_darah}}</td>
+                <td>{{$data->religion['nama']}}</td>
+                <td>{{$data->maritalStatus['nama']}}</td>
+                <td>{{$data->job['nama']}}</td>
+                <td>{{$data->citizenship['nama']}}</td>
                 <td>
-                    <div class="row g-5">
+                    <div class="row g-4">
                         <div class="col-md-6">
-                            <a class="btn btn-warning rounded-pill" href="/warga/{{$w->id}}/edit">Ubah</a>
+                            <a class="btn btn-warning" href="/warga/{{$data->id}}/edit"><i class="bi bi-pencil-square"></i></a>
+
                         </div>
                         <div class="col-md-6">
-                            <form action="/warga/{{$w->id}}" method="post">
+                            <form action="/warga/{{$data->id}}" method="post">
                                 @csrf
                                 @method('delete')
-                                <input class="btn btn-danger rounded-pill" type="submit" value="Hapus"></form>
+                                <button class="btn btn-danger" type="submit"><i class="bi bi-trash3-fill"></i></button></form>
 
                         </div>
                     </div>
