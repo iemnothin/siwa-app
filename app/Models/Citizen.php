@@ -17,7 +17,7 @@ class Citizen extends Model
     }
     public function maritalStatus()
     {
-        return $this->belongsTo(MaritalStatus::class, 'status_pernikahan_id', 'id');
+        return $this->belongsTo(MaritalStatus::class, 'status_perkawinan_id', 'id');
     }
     public function religion()
     {

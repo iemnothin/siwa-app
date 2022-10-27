@@ -6,14 +6,15 @@ use App\Models\Citizen;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
 class WargaController extends Controller
 {
     public function read()
     {
-        $warga = Citizen::with('gender', 'religion', 'maritalStatus', 'job', 'citizenship')->get();
+        $citizen = Citizen::with('gender', 'religion', 'maritalStatus', 'job', 'citizenship')->get();
 
-        return view('warga.read', ['citizenList' => $warga]);
+        return view('warga.read', ['citizenList' => $citizen]);
     }
     public function create()
     {
@@ -22,59 +23,54 @@ class WargaController extends Controller
         $job = DB::table('jobs')->get();
         $maritalStatus = DB::table('marital_statuses')->get();
         $citizenship = DB::table('citizenships')->get();
-
-        return view('warga.create', ['genderList' => $gender, 'religionList' => $religion, 'jobList' => $job, 'maritalStatusList' => $maritalStatus, 'citizenshipList' => $citizenship]);
+        $citizen = Citizen::all();
+        return view('warga.create', ['citizen'=>$citizen,'genderList' => $gender, 'religionList' => $religion, 'jobList' => $job, 'maritalStatusList' => $maritalStatus, 'citizenshipList' => $citizenship]);
     }
     public function store(Request $request)
     {
-        // Citizen::create($request->except('_token', 'submit'));
-        $validate = Validator::make($request->all(), [
+        // $citizen = Citizen::create($request->except('_token', 'submit'));
+        $validated = $request->validate([
             'nik' => 'required|min:16|max:16',
             'nama' => 'required|max:30',
             'tempat' => 'required|max:30',
             'tanggal_lahir' => 'required',
-            'jenis_kelamin' => 'required',
+            // 'jenis_kelamin_id' => 'in:Laki-laki,Perempuan',
             'alamat' => 'required|max:15',
             'rt' => 'required|min:3|max:3',
             'rw' => 'required|min:3|max:3',
             'kel_desa' => 'required|max:20',
             'kecamatan' => 'required|max:20',
-            'agama' => 'required',
-            'status_perkawinan' => 'required',
-            'pekerjaan' => 'required',
-            'kewarganegaraan' => 'required'
-        ], [
-            'nik.required' => 'NIK harus diisi',
-            'nik.min' => 'NIK harus 16 digit',
-            'nik.max' => 'NIK harus 16 digit',
-            'nama.required' => 'Nama harus diisi',
-            'nama.max' => 'Nama maksimal 50 karakter',
-            'tempat.required' => 'Tempat lahir harus diisi',
-            'tempat.max' => 'Tempat lahir maksimal 30 karakter',
-            'tanggal_lahir.required' => 'Tanggal lahir harus diisi',
-            'jenis_kelamin.required' => 'Jenis kelamin harus diisi',
-            'alamat.required' => 'Alamat harus diisi',
-            'alamat.max' => 'Alamat maksimal 15 karakter',
-            'rt.required' => 'RT harus diisi',
-            'rt.min' => 'RT harus 3 digit',
-            'rt.max' => 'RT harus 3 digit',
-            'rw.required' => 'RW harus diisi',
-            'rw.min' => 'RW harus 3 digit',
-            'rw.max' => 'RW harus 3 digit',
-            'kel_desa.required' => 'Kel/Desa harus diisi',
-            'kel_desa.max' => 'Kel/Desa maksimal 20 karakter',
-            'kecamatan.required' => 'Kecamatan harus diisi',
-            'kecamatan.max' => 'Kecamatan maksimal 20 karakter',
-            'agama.required' => 'Agama harus diisi',
-            'status_perkawinan.required' => 'Status Perkawinan harus diisi',
-            'pekerjaan.required' => 'Pekerjaan harus diisi',
-            'kewarganegaraan.required' => 'Kewarganegaraan harus diisi'
+            // 'agama_id' => 'required|in:Islam,Kristen,Hindu,Buddha,Konghucu',
+            // 'status_perkawinan_id' => 'in:Sudah Kawin,Belum Kawin',
+            // 'pekerjaan_id' => 'in:Belum/Tidak Bekerja,Mengurus Rumah Tangga,Pelajar/Mahasiswa,Pegawai Negeri Sipil (PNS),Tentara Nasional Indonesia (TNI),Kepolisian RI (POLRI),Karyawan Swasta,Karyawan BUMN,Karyawan BUMD,Buruh',
+            // 'kewarganegaraan_id' => 'in:WNI,WNA'
         ]);
-        if ($validate->fails()) {
-            return back()->withErrors($validate->errors())->withInput();
-        }
-        Citizen::create($request->except('_token', 'submit'));
-        return redirect('/warga');
+        // if ($validate->fails()) {
+        //     return back()->withErrors($validate)->withInput();
+        // }
+        // $simpan = Citizen::create($request->all());
+        // if ($simpan) {
+        //     return redirect('/warga');
+        // }
+        // $citizen = Citizen::create([
+        // 'nik' => $request->nik,
+        // 'nama' => $request->nama,
+        // 'tempat' => $request->tempat,
+        // 'tanggal_lahir' => $request->tanggal_lahir,
+        // 'jenis_kelamin_id' => $request -> input('jenis_kelamin_id'),
+        // 'alamat' => $request->alamat,
+        // 'rt' => $request->rt,
+        // 'rw' => $request->rw,
+        // 'kel_desa' => $request->kel_desa,
+        // 'kecamatan' => $request->kecamatan,
+        // 'agama_id' => $request -> input('agama_id'),
+        // 'status_perkawinan_id' => $request -> input('status_perkawinan_id'),
+        // 'pekerjaan_id' => $request -> input('pekerjaan_id'),
+        // 'kewarganegaraan_id' => $request -> input('kewarganegaraan_id'),
+        // ]);
+        // $citizen->save();
+        Citizen::create($request->all());
+        return redirect('/warga')->with('Sukses', 'Data telah ditambahkan !');
     }
     public function edit($id)
     {
@@ -84,54 +80,23 @@ class WargaController extends Controller
     public function update($id, Request $request)
     {
         $warga = Citizen::find($id);
-        $validate = Validator::make($request->all(), [
+        $validated = $request->validate([
             'nik' => 'required|min:16|max:16',
             'nama' => 'required|max:30',
             'tempat' => 'required|max:30',
             'tanggal_lahir' => 'required',
-            'jenis_kelamin' => 'required|not_in:0',
+            // 'jenis_kelamin_id' => 'in:Laki-laki,Perempuan',
             'alamat' => 'required|max:15',
             'rt' => 'required|min:3|max:3',
             'rw' => 'required|min:3|max:3',
             'kel_desa' => 'required|max:20',
             'kecamatan' => 'required|max:20',
-            'agama' => 'required|not_in:0',
-            'status_perkawinan' => 'required|not_in:0',
-            'pekerjaan' => 'required|not_in:0',
-            'kewarganegaraan' => 'required|not_in:0'
-        ], [
-            'nik.required' => 'NIK harus diisi',
-            'nik.min' => 'NIK harus 16 digit',
-            'nik.max' => 'NIK harus 16 digit',
-            'nama.required' => 'Nama harus diisi',
-            'nama.max' => 'Nama harus 30 karakter',
-            'tempat.required' => 'Tempat lahir harus diisi',
-            'tempat.max' => 'Tempat lahir harus 30 karakter',
-            'tanggal_lahir.required' => 'Tanggal lahir harus diisi',
-            'jenis_kelamin.required' => 'Jenis kelamin harus diisi',
-            'jenis_kelamin.not_in' => 'Pilih jenis kelamin Anda',
-            'alamat.required' => 'Alamat harus diisi',
-            'alamat.max' => 'Alamat harus 15 karakter',
-            'rt.required' => 'RT harus diisi',
-            'rt.min' => 'RT harus 3 digit',
-            'rt.max' => 'RT harus 3 digit',
-            'rw.required' => 'RW harus diisi',
-            'rw.min' => 'RW harus 3 digit',
-            'rw.max' => 'RW harus 3 digit',
-            'kel_desa.required' => 'Kel/Desa harus diisi',
-            'kel_desa.max' => 'Kel/Desa harus 20 karakter',
-            'kecamatan.required' => 'Kecamatan harus diisi',
-            'kecamatan.max' => 'Kecamatan harus 20 karakter',
-            'agama.required' => 'Agama harus diisi',
-            'status_perkawinan.required' => 'Status Perkawinan harus diisi',
-            'pekerjaan.required' => 'Pekerjaan harus diisi',
-            'kewarganegaraan.required' => 'Kewarganegaraan harus diisi'
+            // 'agama_id' => 'required|in:Islam,Kristen,Hindu,Buddha,Konghucu',
+            // 'status_perkawinan_id' => 'in:Sudah Kawin,Belum Kawin',
+            // 'pekerjaan_id' => 'in:Belum/Tidak Bekerja,Mengurus Rumah Tangga,Pelajar/Mahasiswa,Pegawai Negeri Sipil (PNS),Tentara Nasional Indonesia (TNI),Kepolisian RI (POLRI),Karyawan Swasta,Karyawan BUMN,Karyawan BUMD,Buruh',
+            // 'kewarganegaraan_id' => 'in:WNI,WNA'
         ]);
-        if ($validate->fails()) {
-            return back()->withErrors($validate->errors())->withInput();
-        }
-        $warga->update($request->except('_token', 'submit'));
-        return redirect('/warga');
+        return redirect('/warga')->with('Sukses', 'Data telah disimpan !');
     }
     public function destroy($id)
     {

@@ -153,9 +153,64 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        'nik' => [
+            'required' => 'NIK harus diisi',
+            'min' => 'NIK harus 16 digit',
+            'max' => 'NIK harus 16 digit',
         ],
+        'nama' => [
+            'required' => 'Nama harus diisi',
+            'max' => 'Nama maksimal 50 karakter',
+        ],
+        'tempat' => [
+            'required' => 'Tempat lahir harus diis',
+            'rule-name' => 'Tempat lahir maksimal 30 karakter',
+        ],
+        'tanggal_lahir' => [
+            'required' => 'Tanggal lahir harus diisi',
+        ],
+        // 'jenis_kelamin_id' => [
+            
+        //     'in' => 'Jenis kelamin harus diisi',
+        // ],
+        'alamat' => [
+            'required' => 'Alamat harus diisi',
+            'max' => 'Alamat maksimal 15 karakter',
+        ],
+        'rt' => [
+            'required' => 'RT harus diisi',
+            'min' => 'RT harus 3 digit',
+            'max' => 'RT harus 3 digit',
+        ],
+        'rw' => [
+            'required' => 'RW harus diisi',
+            'min' => 'RW harus 3 digit',
+            'max' => 'RW harus 3 digit',
+        ],
+        'kel_desa' => [
+            'required' => 'Kel/Desa harus diisi',
+            'max' => 'Kel/Desa maksimal 20 karakter',
+        ],
+        'kecamatan' => [
+            'required' => 'Kecamatan harus diisi',
+            'max' => 'Kecamatan maksimal 20 karakter',
+        ],
+        // 'agama_id' => [
+            
+        //     'in' => 'Agama harus diisi',
+        // ],
+        // 'status_perkawinan_id' => [
+            
+        //     'in' => 'Status Perkawinan harus diisi',
+        // ],
+        // 'pekerjaan_id' => [
+            
+        //     'in' => 'Pekerjaan harus diisi',
+        // ],
+        // 'kewarganegaraan_id' => [
+            
+        //     'in' => 'Kewarganegaraan harus diisi',
+        // ],
     ],
 
     /*

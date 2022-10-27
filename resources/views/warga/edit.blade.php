@@ -235,7 +235,7 @@
                 <div class="container text-center">
                     <div class="row justify-content-md-center mt-3 btn-group" role="group" aria-label="button">
                         <a class="btn btn-secondary rounded-pill" href="/warga" role="button" style="width: 10rem">Kembali</a>
-                        <input class="btn btn-primary rounded-pill ms-2" type="submit" name="submit" value="Perbarui" style="width: 10rem" />
+                        <input class="btn btn-primary rounded-pill ms-2" type="submit" value="Perbarui" style="width: 10rem" />
                         <input class="btn btn-danger rounded-pill ms-2" type="reset" name="reset" value="Reset" style="width: 10rem" />
                     </div>
                 </div>

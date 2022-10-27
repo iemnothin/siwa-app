@@ -6,16 +6,17 @@
 <div class="container">
     <div class="row mt-5">
         <div class="col">
-            <h1 class="bold">Data Kartu Tanda Penduduk</h1><br>
+            <h1 class="bold" ><img src="{{ asset('img/family.png') }}" alt="Logo Aplikasi" class="me-3">Data Kartu Tanda Penduduk</h1><br>
         </div>
     </div>
-    <a class="btn btn-primary rounded-pill" href="/warga/create" role="button">Tambah Data</a>
+    
     <table class="table">
+        <div class="d-flex flex-row-reverse"><a class="btn btn-primary rounded-pill" href="/warga/create" role="button">Tambah Data</a></div>
         <thead>
             <tr class="text-center">
                 <th scope="col">NIK</th>
                 <th scope="col">Nama</th>
-                <th scope="col">Tempat <br> Tanggal Lahir</th>
+                <th scope="col">Tempat/Tanggal Lahir</th>
                 <th scope="col">Jenis Kelamin</th>
                 <th scope="col">Alamat</th>
                 <th scope="col">Agama</th>
@@ -40,17 +41,15 @@
                 <td>{{$data->job['nama']}}</td>
                 <td>{{$data->citizenship['nama']}}</td>
                 <td>
-                    <div class="row g-4">
-                        <div class="col-md-6">
+                    <div class="row d-flex flex-row p-2 g-4">
+                        {{-- <div class="col-md-6">
                             <a class="btn btn-warning" href="/warga/{{$data->id}}/edit"><i class="bi bi-pencil-square"></i></a>
-
-                        </div>
+                        </div> --}}
                         <div class="col-md-6">
                             <form action="/warga/{{$data->id}}" method="post">
                                 @csrf
                                 @method('delete')
                                 <button class="btn btn-danger" type="submit"><i class="bi bi-trash3-fill"></i></button></form>
-
                         </div>
                     </div>
                 </td>

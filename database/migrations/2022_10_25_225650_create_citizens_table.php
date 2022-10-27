@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('citizens', function (Blueprint $table) {
             $table->id();
-            $table->integer('nik')->length('10')->unsigned();
+            $table->bigInteger('nik');
             $table->char('nama', 50);
             $table->char('tempat', 50);
             $table->date('tanggal_lahir');
@@ -27,14 +27,14 @@ return new class extends Migration
             $table->char('kecamatan', 40);
             $table->unsignedBigInteger('agama_id');
             $table->unsignedBigInteger('pekerjaan_id');
-            $table->unsignedBigInteger('status_pernikahan_id');
+            $table->unsignedBigInteger('status_perkawinan_id');
             $table->unsignedBigInteger('kewarganegaraan_id');
             $table->timestamps();
 
             $table->foreign('jenis_kelamin_id')->references('id')->on('genders');
             $table->foreign('agama_id')->references('id')->on('religions');
             $table->foreign('pekerjaan_id')->references('id')->on('jobs');
-            $table->foreign('status_pernikahan_id')->references('id')->on('marital_statuses');
+            $table->foreign('status_perkawinan_id')->references('id')->on('marital_statuses');
             $table->foreign('kewarganegaraan_id')->references('id')->on('citizenships');
         });
     }
@@ -46,6 +46,7 @@ return new class extends Migration
      */
     public function down()
     {
+
         Schema::dropIfExists('citizens');
     }
 };
