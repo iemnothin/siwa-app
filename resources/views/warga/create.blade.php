@@ -70,7 +70,11 @@
                                 <select class="form-select" name="jenis_kelamin_id" aria-label="Select Jenis Kelamin" id="inputJenisKelamin">
                                     <option selected>- Pilih -</option>
                                     @foreach($genderList as $value)
-                                    <option value="{{$value->id}}" {{ old('jenis_kelamin_id') == $value->id ? 'selected' : null }}>{{$value->nama}}</option>
+                                        @if (old('jenis_kelamin_id') == $value->id)
+                                            <option value="{{ $value->id }}" selected>{{ $value->nama }}</option>
+                                        @else
+                                            <option value="{{ $value->id }}">{{ $value->nama }}</option>
+                                        @endif
                                     @endforeach
                                     <!-- {{-- <option value="Laki-laki"> --}}
                                     {{-- Laki-laki --}}
@@ -79,11 +83,6 @@
                                     {{-- Perempuan --}}
                                     {{-- </option> --}} -->
                                 </select>
-                                {{-- @error('jenis_kelamin_id')
-                                <div class="invalid-feedback">
-                                    {{$message}}
-                                </div>
-                                @enderror --}}
                             </div>
                             <!-- Alamat -->
                             <div class="col-md-6 input-group">
@@ -135,25 +134,13 @@
                                 <select name="agama_id" class="form-select" aria-label="Select Agama" id="inputAgama">
                                     <option selected>- Pilih -</option>
                                     @foreach($religionList as $value)
-                                    <option value="{{$value->id}}" {{ old('agama_id') == $value->id ? 'selected' : null }}>{{$value->nama}}</option>
+                                        @if (old('agama_id') == $value->id)
+                                            <option value="{{$value->id}}" selected>{{$value->nama}}</option>
+                                        @else
+                                            <option value="{{$value->id}}">{{$value->nama}}</option>
+                                        @endif
                                     @endforeach
-                                    {{-- <option value="Islam">Islam</option>
-                                    <option value="Kristen">
-                                        Kristen
-                                    </option>
-                                    <option value="Hindu">Hindu</option>
-                                    <option value="Buddha">
-                                        Buddha
-                                    </option>
-                                    <option value="Konghucu"> 
-                                        Konghucu
-                                    </option> --}}
                                 </select>
-                                {{-- @error('agama_id')
-                                <div class="invalid-feedback">
-                                    {{$message}}
-                                </div>
-                                @enderror --}}
                             </div>
                             <!-- Status Perkawinan - opt-->
                             <div class="col-md-6">
@@ -161,20 +148,13 @@
                                 <select name="status_perkawinan_id" class="form-select" aria-label="Select Status Perkawinan" id="inputStatusPerkawinan">
                                     <option selected>- Pilih -</option>
                                     @foreach($maritalStatusList as $value)
-                                    <option value="{{$value->id}}" {{ old('status_perkawinan_id') == $value->id ? 'selected' : null }}>{{$value->nama}}</option>
+                                        @if (old('status_perkawinan_id') == $value->id)
+                                            <option value="{{$value->id}}" selected>{{$value->nama}}</option>
+                                        @else
+                                            <option value="{{$value->id}}">{{$value->nama}}</option>
+                                        @endif
                                     @endforeach
-                                    {{-- <option value="Sudah Kawin">
-                                        Sudah Kawin
-                                    </option>
-                                    <option value="Belum Kawin">
-                                        Belum Kawin
-                                    </option> --}}
                                 </select>
-                                {{-- @error('status_perkawinan_id')
-                                <div class="invalid-feedback">
-                                    {{$message}}
-                                </div>
-                                @enderror --}}
                             </div>
                             
                             <!-- Pekerjaan - opt-->
@@ -183,60 +163,27 @@
                                 <select name="pekerjaan_id" class="form-select" aria-label="Select Pekerjaan" id="inputPekerjaan">
                                     <option selected>- Pilih -</option>
                                     @foreach($jobList as $value)
-                                    <option value="{{$value->id}}" {{ old('pekerjaan_id') == $value->id ? 'selected' : null }}>{{$value->nama}}</option>
+                                        @if (old('pekerjaan_id') == $value->id)
+                                            <option value="{{$value->id}}" selected>{{$value->nama}}</option>
+                                        @else
+                                            <option value="{{$value->id}}">{{$value->nama}}</option>
+                                        @endif
                                     @endforeach
-
-                                    {{-- <option value="Belum/Tidak Bekerja">
-                                        Belum/Tidak Bekerja
-                                    </option>
-                                    <option value="Mengurus Rumah Tangga">
-                                        Mengurus Rumah Tangga
-                                    </option>
-                                    <option value="Pelajar/Mahasiswa">
-                                        Pelajar/Mahasiswa
-                                    </option>
-                                    <option value="Pegawai Negeri Sipil (PNS)">
-                                        Pegawai Negeri Sipil (PNS)
-                                    </option>
-                                    <option value="Tentara Nasional Indonesia (TNI)">
-                                        Tentara Nasional Indonesia (TNI)
-                                    </option>
-                                    <option value="Kepolisian RI (POLRI)">
-                                        Kepolisian RI (POLRI)
-                                    </option>
-                                    <option value="Karyawan Swasta">
-                                        Karyawan Swasta
-                                    </option>
-                                    <option value="Karyawan BUMN">
-                                        Karyawan BUMN
-                                    </option>
-                                    <option value="Karyawan BUMD">
-                                        Karyawan BUMD
-                                    </option>
-                                    <option value="Buruh">Buruh</option> --}}
                                 </select>
-                                {{-- @error('pekerjaan_id')
-                                <div class="invalid-feedback">
-                                    {{$message}}
-                                </div>
-                                @enderror --}}
                             </div>
                             <!-- Kewarganegaraan - opt-->
                             <div class="col-md-6">
                                 <label for="inputKewarganegaraan" class="form-label">Kewarganegaraan</label>
                                 <select name="kewarganegaraan_id" class="form-select" aria-label="Select Kewarganegaraan" id="inputKewarganegaraan">
                                     <option selected>- Pilih -</option>
-                                    @foreach($citizenshipList as $item)
-                                    <option value="{{$item->id}}" {{ old('kewarganegaraan_id') == $value->id ? 'selected' : null }}>{{$item->nama}}</option>
+                                    @foreach($citizenshipList as $value)
+                                        @if (old('kewarganegaraan_id') == $value->id)
+                                            <option value="{{$value->id}}" selected>{{$value->nama}}</option>
+                                        @else
+                                            <option value="{{$value->id}}">{{$value->nama}}</option>
+                                        @endif
                                     @endforeach
-                                    {{-- <option value="WNI">WNI</option>
-                                    <option value="WNA">WNA</option> --}}
                                 </select>
-                                {{-- @error('kewarganegaraan_id')
-                                <div class="invalid-feedback">
-                                    {{$message}}
-                                </div>
-                                @enderror --}}
                             </div>
                         </div>
                     </div>

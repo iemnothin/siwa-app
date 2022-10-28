@@ -155,24 +155,28 @@ return [
     'custom' => [
         'nik' => [
             'required' => 'NIK harus diisi',
+            'unique' => 'NIK sudah ada',
             'min' => 'NIK harus 16 digit',
             'max' => 'NIK harus 16 digit',
         ],
         'nama' => [
             'required' => 'Nama harus diisi',
+            'unique' => 'Nama sudah ada',
             'max' => 'Nama maksimal 50 karakter',
+            'alpha' => 'Nama hanya menerima huruf'
         ],
         'tempat' => [
-            'required' => 'Tempat lahir harus diis',
-            'rule-name' => 'Tempat lahir maksimal 30 karakter',
+            'required' => 'Tempat lahir harus diisi',
+            'max' => 'Tempat lahir maksimal 30 karakter',
+            'alpha' => 'Tempat hanya menerima huruf'
         ],
         'tanggal_lahir' => [
             'required' => 'Tanggal lahir harus diisi',
         ],
-        // 'jenis_kelamin_id' => [
+        'jenis_kelamin_id' => [
             
-        //     'in' => 'Jenis kelamin harus diisi',
-        // ],
+            'in' => 'Jenis kelamin harus diisi',
+        ],
         'alamat' => [
             'required' => 'Alamat harus diisi',
             'max' => 'Alamat maksimal 15 karakter',
@@ -194,23 +198,21 @@ return [
         'kecamatan' => [
             'required' => 'Kecamatan harus diisi',
             'max' => 'Kecamatan maksimal 20 karakter',
+            'alpha' => 'Kecamatan hanya menerima huruf'
         ],
-        // 'agama_id' => [
+        'agama_id' => [
+            'in' => 'Agama harus diisi',
+        ],
+        'status_perkawinan_id' => [
             
-        //     'in' => 'Agama harus diisi',
-        // ],
-        // 'status_perkawinan_id' => [
-            
-        //     'in' => 'Status Perkawinan harus diisi',
-        // ],
-        // 'pekerjaan_id' => [
-            
-        //     'in' => 'Pekerjaan harus diisi',
-        // ],
-        // 'kewarganegaraan_id' => [
-            
-        //     'in' => 'Kewarganegaraan harus diisi',
-        // ],
+            'in' => 'Status Perkawinan harus diisi',
+        ],
+        'pekerjaan_id' => [
+            'in' => 'Pekerjaan harus diisi',
+        ],
+        'kewarganegaraan_id' => [
+            'in' => 'Kewarganegaraan harus diisi',
+        ],
     ],
 
     /*

@@ -10,6 +10,12 @@
         </div>
     </div>
     
+    @if (session()->has('sukses'))
+        <div class="alert alert-success" role="alert">
+            {{session('sukses')}}
+        </div>
+    @endif
+
     <table class="table">
         <div class="d-flex flex-row-reverse"><a class="btn btn-primary rounded-pill" href="/warga/create" role="button">Tambah Data</a></div>
         <thead>
@@ -42,9 +48,9 @@
                 <td>{{$data->citizenship['nama']}}</td>
                 <td>
                     <div class="row d-flex flex-row p-2 g-4">
-                        {{-- <div class="col-md-6">
+                        <div class="col-md-6">
                             <a class="btn btn-warning" href="/warga/{{$data->id}}/edit"><i class="bi bi-pencil-square"></i></a>
-                        </div> --}}
+                        </div>
                         <div class="col-md-6">
                             <form action="/warga/{{$data->id}}" method="post">
                                 @csrf
